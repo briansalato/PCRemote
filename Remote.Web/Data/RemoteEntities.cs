@@ -11,16 +11,15 @@ namespace Remote.Web.Data
     public class RemoteEntities : DbContext, IRemoteEntities
     {
         public IDbSet<Program> Programs { get; set; }
-        public IDbSet<RemoteUser> Users { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-        }
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //}
 
         public RemoteEntities()
         {
-            //this.Configuration.LazyLoadingEnabled = false;
-            //this.Configuration.ProxyCreationEnabled = false;
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Remote.Web.DTO
     public abstract class IdModel
     {
         [Key]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         #region -Object Overrides
         public static bool operator ==(IdModel o1, IdModel o2)
@@ -40,9 +40,9 @@ namespace Remote.Web.DTO
 
         public override int GetHashCode()
         {
-            if (Id.HasValue)
+            if (Id != 0)
             {
-                return (this.GetType().FullName + Id.Value.ToString()).GetHashCode();
+                return (this.GetType().FullName + Id.ToString()).GetHashCode();
             }
 
             return base.GetHashCode();

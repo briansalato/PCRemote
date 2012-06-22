@@ -21,9 +21,13 @@ namespace Remote.Web.Utils
         #endregion
 
         #region -programs
-        public static string Remote(this UrlHelper helper, int programId)
+        public static string Program_Show(this UrlHelper helper, int programId)
         {
-            return helper.Action("Remote", "Program", new { programId = programId });
+            return helper.Action("Show", "Program", new { id = programId });
+        }
+        public static string Program_Create(this UrlHelper helper)
+        {
+            return helper.Action("Create", "Program");
         }
         #endregion
 

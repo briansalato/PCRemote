@@ -1,0 +1,13 @@
+﻿@model Remote.Web.DTO.Program
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Add a Program</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.EditorFor(m => m)
+    <input type="submit" value="Add" />
+}

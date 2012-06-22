@@ -14,14 +14,16 @@ namespace Remote.Web.Test
         {
             _items = items;
         }
-        public FakeDbSet(T item)
-        {
-            _items = new List<T> { item };
-        }
+        public FakeDbSet(T item) 
+            : this(new List<T>() { item }) { }
+        public FakeDbSet() 
+            : this(new List<T>()) { }
 
         public T Add(T entity)
         {
-            throw new NotImplementedException();
+            entity.Id = _items.Count > 0 ? _items.Max(m => m.Id) + 1 : 1;
+            _items.Add(entity);
+            return entity;
         }
 
         public T Attach(T entity)
@@ -56,8 +58,7 @@ namespace Remote.Web.Test
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
-            //return _items.GetEnumerator();
+            return _items.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()

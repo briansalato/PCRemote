@@ -1,12 +1,12 @@
-@model DashboardModel
+@model DashboardViewModel
 @{
     ViewBag.Title = "Home Page";
 }
 
 <section id="Dashboard">
-    @foreach (var program in Model.AvailablePrograms)
+    @foreach (var program in Model.Programs)
     {
-        <a href="@Url.Remote(program.Id)">
+        <a href="@Url.Program_Show(program.Id)">
             @program.Name
         </a>
     }

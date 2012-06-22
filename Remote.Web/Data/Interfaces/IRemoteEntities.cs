@@ -6,6 +6,7 @@ namespace Remote.Web.Data.Interfaces
     public interface IRemoteEntities : IDisposable
     {
         IDbSet<Program> Programs { get; set; }
-        IDbSet<RemoteUser> Users { get; set; }
+
+        int SaveChanges();
     }
 }

@@ -1,0 +1,25 @@
+﻿@model Remote.Web.DTO.Program
+
+<div class="row">
+    <div class="label">
+        @Html.LabelFor(model => model.Name)
+    </div>
+
+    <div class="field">
+        @Html.EditorFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+</div>
+
+<div class="row">
+    <div class="label">
+        @Html.LabelFor(model => model.Command)
+    </div>
+
+    <div class="field">
+        @Html.EditorFor(model => model.Command)
+        @Html.ValidationMessageFor(model => model.Command)
+    </div>
+</div>
+
+@Html.HiddenFor(model => model.Id)

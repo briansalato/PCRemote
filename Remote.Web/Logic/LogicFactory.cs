@@ -8,22 +8,22 @@ using System.Diagnostics.CodeAnalysis;
 namespace Remote.Web.Models
 {
     [ExcludeFromCodeCoverage]
-    public static class ModelFactory
+    public static class LogicFactory
     {
-        private static IUserLogic _userLogic;
-        public static IUserLogic GetUserLogic()
+        private static IProgramLogic _programLogic;
+        public static IProgramLogic GetProgramLogic()
         {
-            if (_userLogic != null)
+            if (_programLogic != null)
             {
-                return _userLogic;
+                return _programLogic;
             }
 
-            return new UserLogic();
+            return new ProgramLogic();
         }
 
-        public static void Set(IUserLogic userLogic = null)
+        public static void Set(IProgramLogic programLogic = null)
         {
-            _userLogic = userLogic;
+            _programLogic = programLogic;
         }
     }
 }
