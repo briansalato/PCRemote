@@ -1,0 +1,13 @@
+@model DashboardModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<section id="Dashboard">
+    @foreach (var program in Model.AvailablePrograms)
+    {
+        <a href="@Url.Remote(program.Id)">
+            @program.Name
+        </a>
+    }
+</section>
