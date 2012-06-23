@@ -2,7 +2,8 @@
 using Remote.Web.ViewModels;
 using Remote.Web.DTO;
 using System.Collections.Generic;
-namespace Remote.Web.Models
+
+namespace Remote.Web.Logic.Interfaces
 {
     public interface IProgramLogic
     {

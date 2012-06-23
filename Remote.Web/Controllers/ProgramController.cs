@@ -12,13 +12,22 @@ namespace Remote.Web.Controllers
     public class ProgramController : BaseController
     {
         [HttpGet]
-        public ActionResult Show(int id)
+        public ActionResult Get(int id)
         {
             var programLogic = LogicFactory.GetProgramLogic();
             var program = programLogic.Get(id);
             if (program == null)
             {
+                this.AddError("ProgramNotFound", "The program you requested could not be found");
+                return Redirect(Url.Dashboard());
+            }
 
+            var windowsLogic = LogicFactory.GetWindowsLogic();
+            var success = windowsLogic.ExecuteCommand(program.Command);
+
+            if (!success)
+            {
+                this.AddError("ErrorRunningCommand", "The program may not have been opened successfully");
             }
 
             return View(program);
@@ -41,7 +50,7 @@ namespace Remote.Web.Controllers
             var programLogic = LogicFactory.GetProgramLogic();
             program = programLogic.Create(program);
             
-            return Redirect(Url.Program_Show(program.Id));
+            return Redirect(Url.Dashboard());
         }
     }
 }

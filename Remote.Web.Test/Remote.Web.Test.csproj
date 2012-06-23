@@ -54,6 +54,7 @@
     <Compile Include="AssertHelper.cs" />
     <Compile Include="Logic\ProgramLogicTest.cs" />
     <Compile Include="FakeDbSet.cs" />
+    <Compile Include="Logic\RemoteLogicTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

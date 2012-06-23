@@ -7,20 +7,21 @@ using Remote.Web.ViewModels;
 using Remote.Web.Filter;
 using Remote.Web.DTO;
 using Remote.Web.Exceptions;
+using Remote.Web.Models;
+using Remote.Web.Logic.Interfaces;
 
-namespace Remote.Web.Models
+namespace Remote.Web.Logic
 {
     public class ProgramLogic : IProgramLogic
     {
         #region -Public Methods
         public Program Get(int id) 
         {
-            throw new NotImplementedException();
-            //var filter = new ProgramFilter()
-            //{
-            //    Id = id
-            //};
-            //return GetPrograms(filter).FirstOrDefault();
+            var filter = new ProgramFilter()
+            {
+                Id = id
+            };
+            return GetPrograms(filter).FirstOrDefault();
         }
 
         public List<Program> GetAll()

@@ -11,6 +11,7 @@ namespace Remote.Web.Data
     public class RemoteEntities : DbContext, IRemoteEntities
     {
         public IDbSet<Program> Programs { get; set; }
+        public IDbSet<DTO.Remote> Remotes { get; set; }
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{

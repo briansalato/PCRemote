@@ -6,15 +6,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Remote.Web.DTO
 {
-    public class Program : IdModel
+    public class Remote : IdModel
     {
         [Required]
         public string Name { get; set; }
 
         [Required]
-        public string Command { get; set; }
+        public string ViewName { get; set; }
 
-        [Required]
-        public Remote Remote { get; set; }
+        public virtual IList<Program> Programs { get; set; }
     }
 }
