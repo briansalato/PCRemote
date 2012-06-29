@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Remote.Web.Models;
 using Remote.Web.Logic.Interfaces;
+using System.Diagnostics;
 
 namespace Remote.Web.Logic
 {
@@ -11,7 +12,14 @@ namespace Remote.Web.Logic
     {
         public bool ExecuteCommand(string command)
         {
-            throw new NotImplementedException();
+            bool success = false;
+            try
+            {
+                Process.Start(command);
+                success = true;
+            }
+            catch { }
+            return success;
         }
     }
 }

@@ -6,7 +6,7 @@
 <section id="Dashboard">
     @foreach (var program in Model.Programs)
     {
-        <a href="@Url.Program_Show(program.Id)">
+        <a href="@Url.Program_Launch(program.Id)">
             @program.Name
         </a>
     }

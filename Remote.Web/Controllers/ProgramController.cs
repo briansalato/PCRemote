@@ -14,12 +14,27 @@ namespace Remote.Web.Controllers
         [HttpGet]
         public ActionResult Get(int id)
         {
-            var programLogic = LogicFactory.GetProgramLogic();
-            var program = programLogic.Get(id);
+            var program = TempData[PROGRAM_TEMPDATA_ID] as Program;
+            if (program == null
+                || program.Id != id)
+            {
+                program = LoadProgram(id);
+                if (program == null)
+                {
+                    return GetInvalidProgramRedirect();
+                }
+            }
+
+            return View(program);
+        }
+
+        [HttpGet]
+        public ActionResult Launch(int id)
+        {
+            var program = LoadProgram(id);
             if (program == null)
             {
-                this.AddError("ProgramNotFound", "The program you requested could not be found");
-                return Redirect(Url.Dashboard());
+                return GetInvalidProgramRedirect();
             }
 
             var windowsLogic = LogicFactory.GetWindowsLogic();
@@ -30,7 +45,9 @@ namespace Remote.Web.Controllers
                 this.AddError("ErrorRunningCommand", "The program may not have been opened successfully");
             }
 
-            return View(program);
+            TempData[PROGRAM_TEMPDATA_ID] = program;
+
+            return Redirect(Url.Program_Show(id));
         }
 
         [HttpGet]
@@ -52,5 +69,19 @@ namespace Remote.Web.Controllers
             
             return Redirect(Url.Dashboard());
         }
+
+        private Program LoadProgram(int id)
+        {
+            var programLogic = LogicFactory.GetProgramLogic();
+            return programLogic.Get(id);
+        }
+
+        private ActionResult GetInvalidProgramRedirect()
+        {
+            this.AddError("ProgramNotFound", "The program you requested could not be found");
+            return Redirect(Url.Dashboard());
+        }
+
+        private const string PROGRAM_TEMPDATA_ID = "Program";
     }
 }

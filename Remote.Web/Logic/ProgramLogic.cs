@@ -9,6 +9,7 @@ using Remote.Web.DTO;
 using Remote.Web.Exceptions;
 using Remote.Web.Models;
 using Remote.Web.Logic.Interfaces;
+using System.Data.Entity;
 
 namespace Remote.Web.Logic
 {
@@ -54,9 +55,16 @@ namespace Remote.Web.Logic
             {
                 var query = db.Programs.AsQueryable();
 
+                //add filters
                 if (filter.Id.HasValue)
                 {
                     query = query.Where(program => program.Id == filter.Id.Value);
+                }
+
+                //include other tables if single select
+                if (filter.Id.HasValue)
+                {
+                    query = query.Include(p => p.Remote);
                 }
 
                 return query.ToList();

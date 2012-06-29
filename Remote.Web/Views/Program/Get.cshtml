@@ -1,0 +1,9 @@
+﻿@model Remote.Web.DTO.Program
+
+@{
+    ViewBag.Title = "Get";
+}
+
+<h2>Get</h2>
+
+@{ Html.RenderPartial("Remotes/" + Model.Remote.ViewName, Model.Remote); }
